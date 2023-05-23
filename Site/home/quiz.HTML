@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="quiz.css">
+    <title>Quiz</title>
+</head>
+
+<body id="body">
+    <div class="divSuave" id="divSuave">
+        <div class="divContainer">
+            <div class="divCima">
+                <div class="divTitle" id="divTitle">
+                    <p class="pTitle1" id="pTitle1"><a href="telaLogado.html" class="pTitle1">Modern</a></p>
+                    <p class="pTitle2" id="pTitle2"><a href="telaLogado.html" class='pTitle2'>Family</a></p>
+                    <p class="pTitle"><a href="telaLogado.html" pTitle></a>Intersperse</a></p>
+                </div>
+                <div class="divSobreMmim">
+                    <p class="pTitle1" id="pSobreMmim">Quiz</p>
+                </div>
+            </div>
+            <div class="divBaixo">
+                <div class="divBaixoQuiz">
+                    <div class="divTitle">
+                        <p class="pTitle1" id="introQuiz">Pergunta</p>
+                        <a class="aResultado" id="aResultado">1/15</a>
+                    </div>
+                    <div class="divForm" id="divForm">
+                        <p class="pPergunta" id="pPergunta"></p>
+                        <a class="aResposta" id="pResposta1" onclick="resposta1()"></a>
+                        <a class="aResposta" id="pResposta2" onclick="resposta2()"></a>
+                        <a class="aResposta" id="pResposta3" onclick="resposta3()"></a>
+                        <a class="aResposta" id="pResposta4" onclick="resposta4()"></a>
+                    </div>
+                    <div class="divFormResultado" style="display: none;" id="divFormResultado">
+                        <p class="pPergunta" id="pResultado"></p>
+                        <p class="pNivel" id="pNivel">Seu nivel é: </p>
+                    </div>
+                </div>
+                <div class="divBaixo Resultado">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+
+
+    var vtPerguntas = ['A empresa que Jay construiu é especializada em que setor?', 'Qual era o nome do namorado meteorologista de Haley?', 'Por qual motivo Alex tirou um ano de férias da faculdade?', 'Em que local Claire e Phil se conheceram?', 'Qual ex-presidente citou Modern Family como seu programa favorito?', 'Que tipo de negócio Gloria começou a empreender?', 'O que Cam disse que faria se fosse presidente?', 'Em que ano a série foi lançada?', 'Qual temporada Mitchell e Cam se casam?', 'Qual o nome da fiel assistente do Jay?', 'Qual curso de faculdade a Claire é formada?', 'Quantos empregos o Cam já teve?', 'Quantas vezes a Dede atacou a Glória?', 'Por que o Phil quis fazer a viagem para a Austrália?', 'Qual o nome do cão-mordomo que o Jay comprou?'];
+
+    var vtResposta1 = ['Galpões', 'Johnny Storm', 'Porque ela teve um caso com o professor', 'Show do Duran Duran', 'Barack Obama', 'Cursos de espanhol', 'Por pepinos no sistema de água',  2012 , 'Primeira temporada', 'Monica', 'Marketing',  5 ,  2 , 'Para se reconectar com seu falecido pai', 'Cão-mordomo']
+
+    var vtResposta2 = ['Marketing', 'Phillip Dash', 'Porque ela contratou o Mono no seu lugar', 'Faculdade', 'Bill Clinton', 'Aulas de culinária', 'Proibir críticas a Maryl Streep', '2010', 'Terceira temporada', 'Mary', 'Direito', 11 , 1 , 'Para se reconectar com a falecida mãe', 'Baby']
+
+    var vtResposta3 = ['Esporte', 'Sonny Rain', 'Porque ela estava sofrendo crises de pânico', 'Baile', 'George W.Bush', 'Molhos Picantes', 'Acabar com o Halloween', '2008', 'Sétima temporada', 'Alice', 'Administração', 8 ,  3, 'Para distrair Clair de seu emprego', 'Barkley']
+
+    var vtResposta4 = ['Armários', 'Rainer Shine', 'Porque ela foi para Sacramento', 'Colégio', 'Donald Trump', 'Sapatos', 'Fazer todo mundo comer feijão', '2009', 'Quinta temporada', 'Margaret', 'Psicologia', 20, 4, 'Para aproveitar o último ano antes da Alex ir para a Faculdade', 'Barney']
+
+    var vtPerguntasMostradas = [];
+
+    var teveQueVoltar = false;
+    var nomeroSorteado = -1;
+    var respostaCerta = -1;
+    var respostaEscolhida = -1;
+    var acertos = 0;
+    var erros = 0;
+
+    sorteio()
+    setTimeout(() => {
+        pergunta()
+    }, 1000);
+
+    
+
+    function sorteio() {
+        var limiteVetor = 14;
+        var inicioVetor = 0;
+        var sorteioPergunta = (Math.random() * (limiteVetor - inicioVetor) + inicioVetor).toFixed();
+        if(vtPerguntasMostradas.length == vtPerguntas.length) {
+            exibirResultado();
+            return;
+        }
+        nomeroSorteado = sorteioPergunta;
+        if (sorteioPergunta == 7 || sorteioPergunta == 11 || sorteioPergunta == 12){
+            pResposta1.style='Font-family: Arial';
+            pResposta2.style='Font-family: Arial';
+            pResposta3.style='Font-family: Arial';
+            pResposta4.style='Font-family: Arial';
+        }
+        else {
+            pResposta1.style='Font-family: hagrid';
+            pResposta2.style='Font-family: hagrid';
+            pResposta3.style='Font-family: hagrid';
+            pResposta4.style='Font-family: hagrid';
+        }
+        if (teveQueVoltar == true) {
+            pergunta();
+        }
+    }
+    function pergunta() {
+        if (vtPerguntasMostradas.indexOf(nomeroSorteado) == -1) {
+            teveQueVoltar = false
+            pPergunta.innerHTML = vtPerguntas[nomeroSorteado];
+            pResposta1.innerHTML = vtResposta1[nomeroSorteado];
+            pResposta2.innerHTML = vtResposta2[nomeroSorteado];
+            pResposta3.innerHTML = vtResposta3[nomeroSorteado];
+            pResposta4.innerHTML = vtResposta4[nomeroSorteado];
+            vtPerguntasMostradas.push(nomeroSorteado);
+            resposta()
+        }
+        else {
+            sorteio();
+            teveQueVoltar = true;
+        }
+    }
+    vezes = 0
+    function resposta() {
+        vezes++
+        aResultado.innerHTML = `${vezes}/15`
+        if (nomeroSorteado == 0) {
+            respostaCerta = 4;
+        }
+        if (nomeroSorteado == 1) {
+            respostaCerta = 4;
+        }
+        if (nomeroSorteado == 2) {
+            respostaCerta = 2;
+        }
+        if (nomeroSorteado == 3) {
+            respostaCerta = 2;
+        }
+        if (nomeroSorteado == 4) {
+            respostaCerta = 1;
+        }
+        if (nomeroSorteado == 5) {
+            respostaCerta = 3;
+        }
+        if (nomeroSorteado == 6) {
+            respostaCerta = 1;
+        }
+        if (nomeroSorteado == 7) {
+            respostaCerta = 4;
+        }
+        if (nomeroSorteado == 8) {
+            respostaCerta = 4;
+        }
+        if (nomeroSorteado == 9) {
+            respostaCerta = 4;
+        }
+        if (nomeroSorteado == 10) {
+            respostaCerta = 1;
+        }
+        if (nomeroSorteado == 11) {
+            respostaCerta = 3;
+        }
+        if (nomeroSorteado == 12) {
+            respostaCerta = 3;
+        }
+        if (nomeroSorteado == 13) {
+            respostaCerta = 2;
+        }
+        if (nomeroSorteado == 14) {
+            respostaCerta = 3;
+        }
+    }
+    function resposta1() {
+        respostaEscolhida = 1;
+        if (respostaEscolhida == respostaCerta) {
+            pResposta1.style='color: green'
+            setTimeout(() => {                
+                acertos++;
+                teveQueVoltar = true
+                sorteio()
+            }, 1000);
+        }
+        else {
+            pResposta1.style='color: red'
+            setTimeout(() => {
+            erros++;
+            teveQueVoltar = true
+            sorteio()
+            }, 1000);
+        }
+    }
+    function resposta2() {
+        respostaEscolhida = 2;
+        if (respostaEscolhida == respostaCerta) {
+            pResposta2.style='color: green'
+            setTimeout(() => {                
+                acertos++;
+                teveQueVoltar = true
+                sorteio()
+            }, 1000);
+        }
+        else {
+            pResposta2.style='color: red'
+            setTimeout(() => {
+            erros++;
+            teveQueVoltar = true
+            sorteio()
+            }, 1000);
+        }
+    }
+    function resposta3() {
+        respostaEscolhida = 3;
+        if (respostaEscolhida == respostaCerta) {
+            pResposta3.style='color: green'
+            setTimeout(() => {                
+                acertos++;
+                teveQueVoltar = true
+                sorteio()
+            }, 1000);
+        }
+        else {
+            pResposta3.style='color: red'
+            setTimeout(() => {
+            erros++;
+            teveQueVoltar = true
+            sorteio()
+            }, 1000);
+        }
+    }
+    function resposta4() {
+        respostaEscolhida = 4;
+        if (respostaEscolhida == respostaCerta) {
+            pResposta4.style='color: green'
+            setTimeout(() => {                
+                acertos++;
+                teveQueVoltar = true
+                sorteio()
+            }, 1000);
+        }
+        else {
+            pResposta4.style='color: red'
+            setTimeout(() => {
+            erros++;
+            teveQueVoltar = true
+            sorteio()
+            }, 1000);
+    }
+}
+    function exibirResultado() {
+
+        var media = ((acertos/15)*100)/10
+        var condicao = '';
+
+        if (media <= 4) {
+            condicao = 'Simplesmente medíocre, você já assistiu a série pelo menos uma vez na sua vida?'
+        }
+        if (media > 4 && media <= 6) {
+            condicao = 'Muito ruim, assista mais Modern Family!'
+        }
+        if (media >6 && media <=8) {
+            condicao = 'Foi bem, maas precisa melhorar'
+        }
+        if (media >8 && media <=9) {
+            condicao = 'Muito bom, nós podemos ser amigos?'
+        }
+        if (media >9 && media <=10) {
+            condicao = 'AVISE SUA MÃE, VOCÊ O MAIORAL!!'
+        }
+
+
+
+        divForm.style = 'display: none;'
+        divFormResultado.style = 'display: block;'
+        pResultado.innerHTML = `Sua média foi de <a style='font-family: arial'>${(media).toFixed(1)}</a>`
+        pNivel.innerHTML = `${condicao}`
+
+    }
+
+
+</script>
+
+</html>

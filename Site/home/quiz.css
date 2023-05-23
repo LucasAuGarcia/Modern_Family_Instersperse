@@ -1,0 +1,168 @@
+
+@font-face {
+    font-family: hagrid;
+    src: url(Hagrid-Regular-trial.ttf);
+}
+@-webkit-keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @-webkit-keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+  }
+  @keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+  }
+@-webkit-keyframes aumentar {
+    from { font-size: 17; }
+    to { font-size: 20; }
+  }
+  @keyframes aumentar {
+    from { font-size: 17; }
+    to { font-size: 20; }
+  }
+* {
+    font-family: hagrid;
+    color: white;
+}
+a {
+    text-decoration: none;
+}
+body {
+    animation-name: fadeIn;
+    animation-duration: 1s;
+    background-color: black;
+    /*! display: flex; */
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    height: 809px;
+    width: 100%;
+}
+.divContainer {
+    width: 93%;
+    height: 97%;
+}
+.pTitle {
+    font-family: Arial;
+    color: white;
+    font-size: 13.9px;
+    text-shadow: #ee4f28 0.1em 0.1em 0.2em;
+    margin: 0;
+}
+.pTitle1 {
+    animation-duration: 1s;
+    animation-name: slideout2;
+    font-family: hagrid;
+    font-size: 33.9px;
+    margin: 0;
+}
+.pTitle2 {
+    animation-duration: 1s;
+    animation-name: slideout2;
+    font-family: hagrid;
+    font-size: 33.9px;
+    color: #ee4f28;
+    margin: 0;
+    margin-bottom: 8px;
+}
+.divCima {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 27px;
+    align-items: center;
+}
+.divBaixoQuiz {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 80%;
+    height: 60vh;
+}
+.divParte {
+    font-size: 19px;
+    width: 29%;
+    height: 100%;
+    text-align: justify;
+}
+.divBaixo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
+.divForm {
+    height: 90%;
+    width: 100%;
+    background-color: #ee4f28;
+    border-radius: 40px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+.divTitle {
+    margin-bottom: 20px;
+}
+#introQuiz {
+    margin-left: 40px;
+}
+.pPergunta {
+    animation-name: fadeIn;
+    animation-duration: 1s;
+    font-size: 30px;
+    margin-top: 0;
+    margin-left: 23px;
+}
+.aResposta { 
+    width: fit-content;
+    font-size: 17px;
+    margin-left: 23px;
+    margin-bottom: 12px;
+}
+.aResposta:hover {
+    transition-duration: 1s;
+    color: black;
+    font-size: 20px;
+}
+.aResposta::after:hover{
+    transition-duration: 1s;
+    font-size: 17px;
+    color: white;    
+}
+.divSuave {
+    animation-name: fadeIn;
+    animation-direction: 3s;
+    height: 100%;
+    animation-name: fadeIn;
+    animation-duration: 1s;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.aResultado {
+    font-family: arial;
+    font-size: 30px;
+    left: 81%;
+    position: absolute;
+    top: 32%;
+}
+.divFormResultado {
+    height: 90%;
+    width: 100%;
+    background-color: #ee4f28;
+    border-radius: 40px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+.pNivel {
+    
+    margin-left: 24px;
+}
