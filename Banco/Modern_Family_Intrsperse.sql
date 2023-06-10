@@ -4,16 +4,34 @@ use ModernFamilyIntersperse;
 create table usuario (
 idUsuario int primary key auto_increment,
 nomeUsuario varchar(45),
-emailUsuario varchar(45),
-fkPersonagem int
+emailUsuario varchar(45) unique,
+senhaUsuario varchar(45),
+idadeUsuario int,
+fkPersonagem int,
+foreign key(fkPersonagem) references personagem (idPersonagem)
 );
 
 create table Personagem (
 idPersonagem int primary key auto_increment,
 nomePersonagem varchar(45)
 );
+ 
+create table likes (
+fkUsuario int,
+fkPersonagem int,
+foreign key (fkUsuario) references usuario(idUsuario),
+foreign key (fkPersonagem) references personagem(idPersonagem),
+primary key (fkUsuario, fkPersonagem)
+);
 
-alter table usuario add foreign key (fkPersonagem) references personagem(idPersonagem);
+create table sugestoes (
+fkUsuario int,
+sugestao varchar(300),
+dataHora datetime,
+lida char (3),
+check (lida in ('Sim', 'Não')),
+primary key (fkUsuario, dataHora)
+);
 
 insert into personagem values 
 (null, 'Phill Dunphy'),
@@ -29,10 +47,3 @@ insert into personagem values
 (null, 'Manny Delgado'),
 (null, 'Joe Pritchett'),
 (null, 'Stella Pritchett');
-
-create table sugestoes (
-idSugestao int primary key auto_increment,
-descricao varchar (300),
-fkUsuario int,
-foreign key (fkUsuario) references usuario (idUsuario)
-);
